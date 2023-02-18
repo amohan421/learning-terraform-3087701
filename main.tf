@@ -39,7 +39,7 @@ resource "aws_default_vpc" "default" {
   }
 }
 
-resource "aws_instance" "blog" {
+resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
   vpc_security_group_ids=[module.blog_sg.security_group_id]
@@ -72,7 +72,7 @@ module "alb" {
       target_type      = "instance"
       targets = {
         my_target = {
-          target_id = "aws_instance.blog.id"
+          target_id = "aws_instance.web.id"
           port = 80
         }
        
