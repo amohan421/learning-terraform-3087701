@@ -29,7 +29,7 @@ resource "aws_instance" "web" {
 
 resource "aws_security_group" "blog"{
   name        = "blog"
-  Description = "allow http and https & everything out"
+  description = "allow http and https & everything out"
 
   vpc_id=data.aws_vpc.default.id
 }
@@ -41,7 +41,7 @@ to_port    = 80
 protocol   = "tcp"
 cidr_blocks= ["0.0.0.0/0"]
 
-security_group_id=aws.security_group_id.blog.id
+security_group_id=aws.security_group.blog.id
 
 }
 
@@ -52,7 +52,7 @@ to_port    = 443
 protocol   = "tcp"
 cidr_blocks= ["0.0.0.0/0"]
 
-security_group_id=aws.security_group_id.blog.id
+security_group_id=aws.security_group.blog.id
 
 }
 
@@ -63,6 +63,6 @@ to_port    = 0
 protocol   = -1
 cidr_blocks= ["0.0.0.0/0"]
 
-security_group_id=aws.security_group_id.blog.id
+security_group_id=aws.security_group.blog.id
 
 }
